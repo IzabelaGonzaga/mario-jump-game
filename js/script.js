@@ -9,16 +9,25 @@ const jump = () => {
     }, 500)
 }
 
-const createButton = () => {
-    let tryAgain = document.createElement('button');
-    tryAgain.innerHTML = 'TRY AGAIN';
-    tryAgain.style = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 14px; font-weight: bold; width: fit-content; padding: 4px 8px; border: none; border-radius: 4px;';
+const gameOver = () => {
+    let tryAgainButton = document.createElement('button');
+    tryAgainButton.innerHTML = 'TRY AGAIN';
+    tryAgainButton.style = 'font-size: 14px; width: fit-content; padding: 12px; border: none; border-radius: 4px;';
 
-    tryAgain.addEventListener('click', () => {
+    tryAgainButton.addEventListener('click', () => {
         location.reload();
-    })
+    });
 
-    document.body.appendChild(tryAgain);
+    let gameOverMessage = document.createElement('h2');
+    gameOverMessage.innerHTML = 'GAME OVER';
+    gameOverMessage.style = 'padding-bottom: 24px;'
+
+    let newDiv = document.createElement('div');
+    newDiv.style = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-wrap: wrap; flex-direction: column; align-items: center;'
+    newDiv.appendChild(gameOverMessage);
+    newDiv.appendChild(tryAgainButton);
+
+    document.body.appendChild(newDiv);
 }
 
 const loop = setInterval(() => {
@@ -36,7 +45,7 @@ const loop = setInterval(() => {
         mario.style.width = '75px';
         mario.style.marginLeft = '50px';
 
-        createButton();
+        gameOver();
 
         clearInterval(loop);
     }
